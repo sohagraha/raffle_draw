@@ -1,6 +1,7 @@
 require('dotenv').config('../.env')
 const express = require('express');
 
+
 const middleware = require('./middleware')
 const routes = require('./routes')
 const { notFoundHandler, errorHandler } = require('./error')
@@ -16,7 +17,7 @@ myDB.bulkCreate('user 5', 10, 20)
 const tickets = myDB.find()
 // console.log(tickets);
 const winners = myDB.draw(2);
-console.log(winners);
+// console.log(winners);
 
 app.use(middleware)
 

@@ -49,10 +49,11 @@ class MyDB {
     findById(ticketId) {
         const ticket = this.tickets.find(
             /**
-             * 
-             * @param {Ticket} ticket 
+             * @param {Ticket} ticket
              */
-            (ticket) => { ticket.id === ticketId });
+            (ticket) => ticket.id === ticketId
+        );
+
         return ticket;
     }
     /**
@@ -63,12 +64,11 @@ class MyDB {
     findByUserName(username) {
         const tickets = this.tickets.filter(
             /**
-             * 
-             * @param {Ticket} ticket 
+             * @param {Ticket} ticket
              */
-            (ticket) => { ticket.username === username });
+            (ticket) => ticket.username === username
+        );
         return tickets;
-
     }
     /**
      * 
@@ -85,21 +85,25 @@ class MyDB {
         return ticket;
     }
     /**
-     * 
-     * @param {string} ticketId 
+     * delete ticket from db
+     * @param {string} ticketId
      */
     deleteById(ticketId) {
-        const index = this.tickets.findIndex((ticket) => {
-            ticket.id === ticketId
-        });
+        const index = this.tickets.findIndex(
+            /**
+             * @param {Ticket} ticket
+             */
+            (ticket) => ticket.id === ticketId
+        );
+
         if (index !== -1) {
             this.tickets.splice(index, 1);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
+
     /**
      * 
      * @param {number} winnerCount 
@@ -109,18 +113,14 @@ class MyDB {
         let indexes = new Array(winnerCount)
         for (let i = 0; i < winnerCount; i++) {
             let index = Math.floor(Math.random() * this.tickets.length);
-            console.log(`${index}`);
             while (indexes.includes(index)) {
-                console.log("repeat");
+
                 index = Math.floor(Math.random() * this.tickets.length);
             }
-            console.log(`Push Final: ${index}`);
             indexes.push(index);
-            // console.log(indexes);
         }
         const winners = [];
         const winner = indexes.map(index => {
-            // console.log(index);
             const value = this.tickets[index]
             winners.push(value)
         });
